@@ -1,5 +1,14 @@
-const ProductsPage = () => {
-  return <h1>Pagina de Produtos</h1>;
+import { db } from "../_lib/prisma";
+
+const ProductPage = async () => {
+  const products = await db.product.findMany({});
+  return (
+    <div>
+      {products.map((product) => (
+        <p key={product.id}>{product.name}</p>
+      ))}
+    </div>
+  );
 };
 
-export default ProductsPage;
+export default ProductPage;
